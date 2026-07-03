@@ -17,6 +17,19 @@
 ```
 
 
+Using declaration을 사용해서 네임스페이스를 통한 접근을 하지 않도록 합니다.
+std처럼 광범위하게 풀지 않고 실제 사용하는 부분에 대해서만 사용합니다. 단, testing은 예외로 합니다.
+
+```cpp
+#include <vector>
+
+#include "gmock/gmock.h"
+
+using namespace std;     // (X)
+using std::vector;       // (O)
+using namespace testing; // (O)
+```
+
 ## Class
 멤버변수와 메소드의 순서를 아래와 같이 메소드 > 멤버변수 순으로 하고, public > protected > private 순으로 합니다.
 클래스의 이름은 대문자부터 시작하는 파스칼, 메소드 이름은 소문자부터 시작하는 카멜, 변수 이름은 소문자와 _로 이뤄진 스네이크 방식을 사용합니다.
