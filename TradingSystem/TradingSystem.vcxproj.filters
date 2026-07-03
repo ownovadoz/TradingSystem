@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="kiwer_api.cpp">
       <Filter>소스 파일\api</Filter>
     </ClCompile>
@@ -45,5 +42,14 @@
     <ClCompile Include="kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
+    <ClCompile Include="IStockBrockerDriver.h">
+      <Filter>소스 파일\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="KiwerStockDriver.cpp">
+      <Filter>소스 파일\driver</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
