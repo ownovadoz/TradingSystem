@@ -27,25 +27,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="kiwer_api.cpp">
+    <ClCompile Include="api\kiwer_api.cpp">
       <Filter>소스 파일\api</Filter>
     </ClCompile>
-    <ClCompile Include="nemo_api.cpp">
+    <ClCompile Include="api\nemo_api.cpp">
       <Filter>소스 파일\api</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="nemo_test.cpp">
+    <ClCompile Include="test\nemo_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
-    <ClCompile Include="kiwer_test.cpp">
+    <ClCompile Include="test\kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
-    <ClCompile Include="IStockBrockerDriver.h">
+    <ClCompile Include="driver\IStockBrockerDriver.h">
       <Filter>소스 파일\driver</Filter>
     </ClCompile>
-    <ClCompile Include="KiwerStockDriver.h">
+    <ClCompile Include="driver\KiwerStockDriver.h">
       <Filter>소스 파일\driver</Filter>
     </ClCompile>
   </ItemGroup>

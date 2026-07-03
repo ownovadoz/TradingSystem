@@ -1,7 +1,7 @@
 ﻿#include "gmock/gmock.h"
 using namespace testing;
 
-#include "KiwerStockDriver.h"
+#include "../driver/KiwerStockDriver.h"
 
 class KiwerDriverTest : public ::testing::Test {
 protected:
