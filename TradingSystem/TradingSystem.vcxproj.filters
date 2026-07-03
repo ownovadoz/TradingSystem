@@ -33,11 +33,20 @@
     <ClCompile Include="api\kiwer_api.cpp">
       <Filter>소스 파일\api</Filter>
     </ClCompile>
-    <ClCompile Include="test\kiwer_test.cpp">
-      <Filter>소스 파일\test</Filter>
-    </ClCompile>
     <ClCompile Include="test\nemo_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
+    <ClCompile Include="test\kiwer_test.cpp">
+      <Filter>소스 파일\test</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\IStockBrockerDriver.h">
+      <Filter>소스 파일\driver</Filter>
+    </ClCompile>
+    <ClCompile Include="driver\KiwerStockDriver.h">
+      <Filter>소스 파일\driver</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -139,7 +139,13 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="driver\IStockBrockerDriver.h" />
+    <ClCompile Include="driver\KiwerStockDriver.h" />
+    <ClCompile Include="api\kiwer_api.cpp" />
+    <ClCompile Include="test\kiwer_test.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="api\nemo_api.cpp" />
+    <ClCompile Include="test\nemo_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="api\kiwer_api.cpp" />
