@@ -152,11 +152,16 @@
     <ClInclude Include="driver\NemoStockDriver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="api\kiwer_api.cpp" />
-    <ClCompile Include="api\nemo_api.cpp" />
+    <ClCompile Include="auto_trading_system.cpp" />
+    <ClCompile Include="auto_trading_system_test.cpp" />
+    <ClCompile Include="kiwer_api.cpp" />
+    <ClCompile Include="kiwer_test.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="test\kiwer_test.cpp" />
-    <ClCompile Include="test\nemo_test.cpp" />
+    <ClCompile Include="nemo_api.cpp" />
+    <ClCompile Include="nemo_test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="auto_trading_system.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -28,4 +28,3 @@ void AutoTradingSystem::buyNiceTiming(const std::string& stockCode, int totalMon
 void AutoTradingSystem::sellNiceTiming(const std::string& stockCode, int count) {
 
 }
-
