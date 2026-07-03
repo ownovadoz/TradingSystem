@@ -14,7 +14,7 @@ TEST(AutoTradingSystemNoBrokerTest, didNotSelectStockBroker) {
 	EXPECT_THROW(system.login("id", "pass"), BrokerNotSelectedException);
 }
 
-TEST(AutoTradingSystemFactoryTest, BrokerType으로_선택하면_Factory가_생성한_Driver를_사용한다) {
+TEST(AutoTradingSystemFactoryTest, factoryChooseBrokerByType) {
 	auto factory = std::make_unique<MockStockDriverFactory>();
 	auto driverOwned = std::make_unique<NiceMock<MockStockDriver>>();
 	NiceMock<MockStockDriver>* driverRaw = driverOwned.get();

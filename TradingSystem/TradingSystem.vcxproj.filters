@@ -38,6 +38,7 @@
     </ClCompile>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="api\nemo_api.cpp">
       <Filter>소스 파일\api</Filter>
     </ClCompile>
@@ -54,6 +55,8 @@
     </ClCompile>
 =======
 >>>>>>> 4a4000e (First Implement Auto Trading System App Unit Test Framework)
+=======
+>>>>>>> 966e596 (First Implement Auto Trading System App Unit Test Framework)
     <ClCompile Include="auto_trading_system.cpp">
       <Filter>소스 파일\app</Filter>
     </ClCompile>
@@ -61,6 +64,7 @@
 >>>>>>> e83dc90 (AutoTrading Application 초기 구조 구현)
       <Filter>소스 파일\test</Filter>
     </ClCompile>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <ClCompile Include="test\kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
@@ -71,12 +75,17 @@
     <ClCompile Include="driver\KiwerStockDriver.h">
       <Filter>소스 파일\driver</Filter>
 =======
+=======
+>>>>>>> 966e596 (First Implement Auto Trading System App Unit Test Framework)
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>소스 파일</Filter>
+<<<<<<< HEAD
 >>>>>>> 4a4000e (First Implement Auto Trading System App Unit Test Framework)
+=======
+>>>>>>> 966e596 (First Implement Auto Trading System App Unit Test Framework)
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

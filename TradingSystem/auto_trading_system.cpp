@@ -21,11 +21,9 @@ void AutoTradingSystem::login(const std::string& id, const std::string& password
 	authorized = true;
 }
 
-void AutoTradingSystem::buy(const std::string& stock_code, int price, int count) {
 	if (driver) driver->buy(stockCode, price, count);
 }
 
-void AutoTradingSystem::sell(const std::string& stock_code, int price, int count) {
 	if (driver) m_broker->sell(stockCode, price, count);
 }
 
