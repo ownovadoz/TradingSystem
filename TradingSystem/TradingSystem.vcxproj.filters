@@ -45,7 +45,7 @@
     <ClCompile Include="IStockBrockerDriver.h">
       <Filter>소스 파일\driver</Filter>
     </ClCompile>
-    <ClCompile Include="KiwerStockDriver.cpp">
+    <ClCompile Include="KiwerStockDriver.h">
       <Filter>소스 파일\driver</Filter>
     </ClCompile>
   </ItemGroup>

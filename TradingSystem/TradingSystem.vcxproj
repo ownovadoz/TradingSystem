@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="IStockBrockerDriver.h" />
-    <ClCompile Include="KiwerStockDriver.cpp" />
+    <ClCompile Include="KiwerStockDriver.h" />
     <ClCompile Include="kiwer_api.cpp" />
     <ClCompile Include="kiwer_test.cpp" />
     <ClCompile Include="main.cpp" />
