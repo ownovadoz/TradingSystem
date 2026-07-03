@@ -14,13 +14,16 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="소스 파일\api">
-      <UniqueIdentifier>{3ef4a6c2-e596-47d6-a677-4deba2b89ef3}</UniqueIdentifier>
+      <UniqueIdentifier>{79995292-134d-49ab-a6f6-f2df3e9f1125}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\test">
-      <UniqueIdentifier>{010b5a5e-201e-40cb-89c7-04d17b707502}</UniqueIdentifier>
+      <UniqueIdentifier>{0dcf8e05-c533-4895-bed0-faaf6918419e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\driver">
-      <UniqueIdentifier>{b2c3d4e5-f6a7-8901-bcde-f12345678901}</UniqueIdentifier>
+    <Filter Include="헤더 파일\driver">
+      <UniqueIdentifier>{289aab9a-61f6-458e-9a2b-b95b9bbf0698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\app">
+      <UniqueIdentifier>{08a49de2-831a-40b5-af28-10c78e7e556f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,22 +45,43 @@
     <ClCompile Include="test\kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
-    <ClCompile Include="driver\IStockBrockerDriver.h">
-      <Filter>소스 파일\driver</Filter>
+    <ClCompile Include="AutoTradingSystem.cpp">
+      <Filter>소스 파일\app</Filter>
     </ClCompile>
-    <ClCompile Include="driver\KiwerStockDriver.h">
-      <Filter>소스 파일\driver</Filter>
+    <ClCompile Include="auto_trading_system_test.cpp">
+      <Filter>소스 파일\test</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="driver\IStockBrockerDriver.h">
-      <Filter>소스 파일\driver</Filter>
+      <Filter>헤더 파일\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="driver\KiwerStockDriver.h">
+      <Filter>헤더 파일\driver</Filter>
     </ClInclude>
     <ClInclude Include="driver\NemoStockDriver.h">
-      <Filter>소스 파일\driver</Filter>
+      <Filter>헤더 파일\driver</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoTradingSystem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="i_stock_broker_driver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="i_stock_driver_factory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mock_stock_broker_driver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mock_stock_driver_factory.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

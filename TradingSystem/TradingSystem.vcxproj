@@ -139,24 +139,26 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="driver\IStockBrockerDriver.h" />
-    <ClCompile Include="driver\KiwerStockDriver.h" />
-    <ClCompile Include="api\kiwer_api.cpp" />
-    <ClCompile Include="test\kiwer_test.cpp" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="api\kiwer_api.cpp" />
     <ClCompile Include="api\nemo_api.cpp" />
+    <ClCompile Include="test\kiwer_test.cpp" />
     <ClCompile Include="test\nemo_test.cpp" />
+    <ClCompile Include="AutoTradingSystem.cpp" />
+    <ClCompile Include="auto_trading_system_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="driver\IStockBrockerDriver.h" />
+    <ClInclude Include="driver\KiwerStockDriver.h" />
     <ClInclude Include="driver\NemoStockDriver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="api\kiwer_api.cpp" />
-    <ClCompile Include="api\nemo_api.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="test\kiwer_test.cpp" />
-    <ClCompile Include="test\nemo_test.cpp" />
+    <ClInclude Include="AutoTradingSystem.h" />
+    <ClInclude Include="i_stock_broker_driver.h" />
+    <ClInclude Include="i_stock_driver_factory.h" />
+    <ClInclude Include="mock_stock_broker_driver.h" />
+    <ClInclude Include="mock_stock_driver_factory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
