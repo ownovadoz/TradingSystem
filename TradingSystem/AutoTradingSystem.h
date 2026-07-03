@@ -1,11 +1,12 @@
 #pragma once
-#include "i_stock_broker_driver.h"
-#include "i_stock_driver_factory.h"
 #include <memory>
 #include <chrono>
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#include "i_stock_broker_driver.h"
+#include "i_stock_driver_factory.h"
 
 class BrokerNotSelectedException : public std::logic_error {
 public:

@@ -1,8 +1,9 @@
-﻿#include "auto_trading_system.h"
+﻿#include <gmock/gmock.h>
+#include <memory>
+
+#include "AutoTradingSystem.h"
 #include "mock_stock_broker_driver.h"
 #include "mock_stock_driver_factory.h"
-#include <gmock/gmock.h>
-#include <memory>
 
 using ::testing::NiceMock;
 using ::testing::Return;

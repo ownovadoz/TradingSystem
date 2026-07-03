@@ -1,9 +1,8 @@
 #include <vector>
 #include <thread>
 #include <chrono>
-#include "auto_trading_system.h"
 
-//using std::vector;
+#include "AutoTradingSystem.h"
 
 AutoTradingSystem::AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory)
 	: factory(std::move(factory)) {

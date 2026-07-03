@@ -1,6 +1,6 @@
 #pragma once
-#include "i_stock_broker_driver.h"
 #include <memory>
+#include "i_stock_broker_driver.h"
 
 enum class BrokerType {
 	Kiwer,

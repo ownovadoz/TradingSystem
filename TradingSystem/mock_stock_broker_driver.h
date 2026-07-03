@@ -1,6 +1,6 @@
 #pragma once
-#include "i_stock_broker_driver.h"
 #include <gmock/gmock.h>
+#include "i_stock_broker_driver.h"
 
 class MockStockDriver : public IStockBrokerDriver {
 public:
