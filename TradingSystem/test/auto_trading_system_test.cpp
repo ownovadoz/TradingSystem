@@ -4,6 +4,7 @@
 #include "AutoTradingSystem.h"
 #include "mock_stock_broker_driver.h"
 #include "mock_stock_driver_factory.h"
+#include "strategy/MockTimingStrategy.h"
 
 using ::testing::NiceMock;
 using ::testing::Return;
@@ -104,8 +105,65 @@ TEST_F(AutoTradingSystemTest, getPrice) {
 	EXPECT_EQ(12345, system.getPrice("005930"));
 }
 
-TEST_F(AutoTradingSystemTest, butNiceTimingAfterLogin) {
+TEST_F(AutoTradingSystemTest, buyNiceTimingWithDefaultStrategyBuysOnRisingTrend) {
+	login();
+	EXPECT_CALL(*mockDriver, getPrice("005930"))
+		.WillOnce(Return(100))
+		.WillOnce(Return(110))
+		.WillOnce(Return(120));
+	EXPECT_CALL(*mockDriver, buy("005930", 120, _)).Times(1);
+
+	system.buyNiceTiming("005930", 1200);
 }
 
-TEST_F(AutoTradingSystemTest, sellNiceTimingAfterLogin) {
+TEST_F(AutoTradingSystemTest, buyNiceTimingUsesInjectedStrategyToDecideBuy) {
+	auto strategyOwned = std::make_unique<NiceMock<MockTimingStrategy>>();
+	NiceMock<MockTimingStrategy>* strategy = strategyOwned.get();
+	system.setTimingStrategy(std::move(strategyOwned));
+
+	login();
+	EXPECT_CALL(*mockDriver, getPrice("005930")).WillRepeatedly(Return(70000));
+	EXPECT_CALL(*strategy, shouldBuy(_)).WillOnce(Return(true));
+	EXPECT_CALL(*mockDriver, buy("005930", 70000, _)).Times(1);
+
+	system.buyNiceTiming("005930", 700000);
+}
+
+TEST_F(AutoTradingSystemTest, buyNiceTimingDoesNotBuyWhenStrategySaysNo) {
+	auto strategyOwned = std::make_unique<NiceMock<MockTimingStrategy>>();
+	NiceMock<MockTimingStrategy>* strategy = strategyOwned.get();
+	system.setTimingStrategy(std::move(strategyOwned));
+
+	login();
+	EXPECT_CALL(*mockDriver, getPrice("005930")).WillRepeatedly(Return(70000));
+	EXPECT_CALL(*strategy, shouldBuy(_)).WillOnce(Return(false));
+	EXPECT_CALL(*mockDriver, buy(_, _, _)).Times(0);
+
+	system.buyNiceTiming("005930", 700000);
+}
+
+TEST_F(AutoTradingSystemTest, sellNiceTimingUsesInjectedStrategyToDecideSell) {
+	auto strategyOwned = std::make_unique<NiceMock<MockTimingStrategy>>();
+	NiceMock<MockTimingStrategy>* strategy = strategyOwned.get();
+	system.setTimingStrategy(std::move(strategyOwned));
+
+	login();
+	EXPECT_CALL(*mockDriver, getPrice("005930")).WillRepeatedly(Return(70000));
+	EXPECT_CALL(*strategy, shouldSell(_)).WillOnce(Return(true));
+	EXPECT_CALL(*mockDriver, sell("005930", 70000, 5)).Times(1);
+
+	system.sellNiceTiming("005930", 5);
+}
+
+TEST_F(AutoTradingSystemTest, sellNiceTimingDoesNotSellWhenStrategySaysNo) {
+	auto strategyOwned = std::make_unique<NiceMock<MockTimingStrategy>>();
+	NiceMock<MockTimingStrategy>* strategy = strategyOwned.get();
+	system.setTimingStrategy(std::move(strategyOwned));
+
+	login();
+	EXPECT_CALL(*mockDriver, getPrice("005930")).WillRepeatedly(Return(70000));
+	EXPECT_CALL(*strategy, shouldSell(_)).WillOnce(Return(false));
+	EXPECT_CALL(*mockDriver, sell(_, _, _)).Times(0);
+
+	system.sellNiceTiming("005930", 5);
 }
