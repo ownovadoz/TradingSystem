@@ -142,6 +142,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="driver\IStockBrockerDriver.h" />
+    <ClInclude Include="driver\NemoStockDriver.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="api\kiwer_api.cpp" />
     <ClCompile Include="api\nemo_api.cpp" />
     <ClCompile Include="main.cpp" />
