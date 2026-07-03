@@ -1,11 +1,16 @@
 #include <vector>
-#include <thread>
 #include <chrono>
 
 #include "AutoTradingSystem.h"
+#include "../strategy/RisingTrendStrategy.h"
+#include "ThreadSleeper.h"
 
-AutoTradingSystem::AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory)
-	: factory(std::move(factory)) {
+AutoTradingSystem::AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory,
+	std::unique_ptr<ITimingStrategy> strategy,
+	std::unique_ptr<ISleeper> sleeper)
+	: factory(std::move(factory)),
+	strategy(strategy ? std::move(strategy) : std::make_unique<RisingTrendStrategy>()),
+	sleeper(sleeper ? std::move(sleeper) : std::make_unique<ThreadSleeper>()) {
 }
 
 void AutoTradingSystem::selectStockBroker(std::unique_ptr<IStockBrokerDriver> driver) {
@@ -14,6 +19,14 @@ void AutoTradingSystem::selectStockBroker(std::unique_ptr<IStockBrokerDriver> dr
 
 void AutoTradingSystem::selectStockBroker(BrokerType type) {
 	selectStockBroker(factory->create(type));
+}
+
+void AutoTradingSystem::setTimingStrategy(std::unique_ptr<ITimingStrategy> strategy) {
+	this->strategy = std::move(strategy);
+}
+
+void AutoTradingSystem::setSleeper(std::unique_ptr<ISleeper> sleeper) {
+	this->sleeper = std::move(sleeper);
 }
 
 void AutoTradingSystem::login(const std::string& id, const std::string& password) {
@@ -62,9 +75,7 @@ void AutoTradingSystem::buyNiceTiming(const std::string& stock_code, int total_m
 
 	std::vector<int> prices = collectPriceTrend(stock_code);
 
-	bool do_buy = isUptrend(prices);
-
-	if (do_buy) {
+	if (strategy->shouldBuy(prices)) {
 		int current_price = prices.back();
 		int shareCount = calculateMaxShares(total_money, current_price);
 		if (shareCount > 0) {
@@ -79,37 +90,13 @@ void AutoTradingSystem::sellNiceTiming(const std::string& stock_code, int count)
 		throw NotAuthorizedException();
 	std::vector<int> prices = collectPriceTrend(stock_code);
 
-	const bool do_sell = isDowntrend(prices);
-
-	if (do_sell) {
+	if (strategy->shouldSell(prices)) {
 		driver->sell(stock_code, prices.back(), count);
 	}
 }
 
 bool AutoTradingSystem::isAuthorized() {
 	return authorized;
-}
-
-bool AutoTradingSystem::isUptrend(const std::vector<int>& prices) const {
-	if (prices.size() < 2) return false;
-
-	for (size_t i = 0; i < prices.size() - 1; ++i) {
-		if (prices[i] >= prices[i + 1]) {
-			return false;
-		}
-	}
-	return true;
-}
-
-bool AutoTradingSystem::isDowntrend(const std::vector<int>&prices) const {
-	if (prices.size() < 2) return false;
-
-	for (size_t i = 0; i < prices.size() - 1; ++i) {
-		if (prices[i] <= prices[i + 1]) {
-			return false;
-		}
-	}
-	return true;
 }
 
 int AutoTradingSystem::calculateMaxShares(int total_money, int current_price) const {
@@ -122,7 +109,7 @@ std::vector<int> AutoTradingSystem::collectPriceTrend(const std::string& stock_c
 	for (int i = 0; i < TREND_CHECK_COUNT; ++i) {
 		prices[i] = driver->getPrice(stock_code);
 		if (i < TREND_CHECK_COUNT - 1) {
-			std::this_thread::sleep_for(PRICE_CHECK_INTERVAL);
+			sleeper->sleep(PRICE_CHECK_INTERVAL);
 		}
 	}
 	return prices;

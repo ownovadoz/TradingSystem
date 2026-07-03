@@ -5,8 +5,10 @@
 #include <string>
 #include <vector>
 
-#include "i_stock_broker_driver.h"
-#include "i_stock_driver_factory.h"
+#include "../driver/i_stock_broker_driver.h"
+#include "../driver/i_stock_driver_factory.h"
+#include "../strategy/ITimingStrategy.h"
+#include "ISleeper.h"
 
 class BrokerNotSelectedException : public std::logic_error {
 public:
@@ -20,10 +22,14 @@ public:
 
 class AutoTradingSystem {
 public:
-	explicit AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory = nullptr);
+	explicit AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory = nullptr,
+		std::unique_ptr<ITimingStrategy> strategy = nullptr,
+		std::unique_ptr<ISleeper> sleeper = nullptr);
 
 	void selectStockBroker(std::unique_ptr<IStockBrokerDriver> driver);
 	void selectStockBroker(BrokerType type);
+	void setTimingStrategy(std::unique_ptr<ITimingStrategy> strategy);
+	void setSleeper(std::unique_ptr<ISleeper> sleeper);
 
 	void login(const std::string& id, const std::string& password);
 
@@ -36,12 +42,12 @@ public:
 	bool isAuthorized();
 	std::vector<int> collectPriceTrend(const std::string& stock_code);
 	int calculateMaxShares(int total_money, int current_price) const;
-	bool isUptrend(const std::vector<int>& prices) const;
-	bool isDowntrend(const std::vector<int>& prices) const;
 
 private:
 	std::unique_ptr<IStockDriverFactory> factory;
 	std::unique_ptr<IStockBrokerDriver> driver;
+	std::unique_ptr<ITimingStrategy> strategy;
+	std::unique_ptr<ISleeper> sleeper;
 	bool authorized = false;
 	static constexpr int TREND_CHECK_COUNT = 3;
 	static constexpr auto PRICE_CHECK_INTERVAL = std::chrono::milliseconds(200);
