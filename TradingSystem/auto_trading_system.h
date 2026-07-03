@@ -2,6 +2,7 @@
 #include "i_stock_broker_driver.h"
 #include "i_stock_driver_factory.h"
 #include <memory>
+#include <chrono>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -32,9 +33,15 @@ public:
 	void buyNiceTiming(const std::string& stock_code, int total_money);
 	void sellNiceTiming(const std::string& stock_code, int count);
 	bool isAuthorized();
+	std::vector<int> collectPriceTrend(const std::string& stock_code);
+	int calculateMaxShares(int total_money, int current_price) const;
+	bool isUptrend(const std::vector<int>& prices) const;
+	bool isDowntrend(const std::vector<int>& prices) const;
 
 private:
 	std::unique_ptr<IStockDriverFactory> factory;
 	std::unique_ptr<IStockBrokerDriver> driver;
 	bool authorized = false;
+	static constexpr int TREND_CHECK_COUNT = 3;
+	static constexpr auto PRICE_CHECK_INTERVAL = std::chrono::milliseconds(200);
 };
