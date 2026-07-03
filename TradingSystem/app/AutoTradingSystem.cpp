@@ -1,14 +1,16 @@
 #include <vector>
-#include <thread>
 #include <chrono>
 
 #include "AutoTradingSystem.h"
-#include "strategy/RisingTrendStrategy.h"
+#include "../strategy/RisingTrendStrategy.h"
+#include "ThreadSleeper.h"
 
 AutoTradingSystem::AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory,
-	std::unique_ptr<ITimingStrategy> strategy)
+	std::unique_ptr<ITimingStrategy> strategy,
+	std::unique_ptr<ISleeper> sleeper)
 	: factory(std::move(factory)),
-	strategy(strategy ? std::move(strategy) : std::make_unique<RisingTrendStrategy>()) {
+	strategy(strategy ? std::move(strategy) : std::make_unique<RisingTrendStrategy>()),
+	sleeper(sleeper ? std::move(sleeper) : std::make_unique<ThreadSleeper>()) {
 }
 
 void AutoTradingSystem::selectStockBroker(std::unique_ptr<IStockBrokerDriver> driver) {
@@ -21,6 +23,10 @@ void AutoTradingSystem::selectStockBroker(BrokerType type) {
 
 void AutoTradingSystem::setTimingStrategy(std::unique_ptr<ITimingStrategy> strategy) {
 	this->strategy = std::move(strategy);
+}
+
+void AutoTradingSystem::setSleeper(std::unique_ptr<ISleeper> sleeper) {
+	this->sleeper = std::move(sleeper);
 }
 
 void AutoTradingSystem::login(const std::string& id, const std::string& password) {
@@ -103,7 +109,7 @@ std::vector<int> AutoTradingSystem::collectPriceTrend(const std::string& stock_c
 	for (int i = 0; i < TREND_CHECK_COUNT; ++i) {
 		prices[i] = driver->getPrice(stock_code);
 		if (i < TREND_CHECK_COUNT - 1) {
-			std::this_thread::sleep_for(PRICE_CHECK_INTERVAL);
+			sleeper->sleep(PRICE_CHECK_INTERVAL);
 		}
 	}
 	return prices;

@@ -37,6 +37,9 @@
     <Filter Include="헤더 파일\strategy">
       <UniqueIdentifier>{5d4f5f7d-5c9d-4d7d-9d1c-5fbf9f8e6f43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\app">
+      <UniqueIdentifier>{6e5f6f8e-6dae-4e8e-9e1c-6fcfaf9f7f54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -57,10 +60,10 @@
     <ClCompile Include="test\kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
-    <ClCompile Include="AutoTradingSystem.cpp">
+    <ClCompile Include="app\AutoTradingSystem.cpp">
       <Filter>소스 파일\app</Filter>
     </ClCompile>
-    <ClCompile Include="auto_trading_system_test.cpp">
+    <ClCompile Include="test\auto_trading_system_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
@@ -69,7 +72,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleLogger.cpp">
+    <ClCompile Include="app\ConsoleLogger.cpp">
+      <Filter>소스 파일\app</Filter>
+    </ClCompile>
+    <ClCompile Include="app\ThreadSleeper.cpp">
       <Filter>소스 파일\app</Filter>
     </ClCompile>
     <ClCompile Include="order\BuyOrderCommand.cpp">
@@ -81,10 +87,10 @@
     <ClCompile Include="order\OrderScheduler.cpp">
       <Filter>소스 파일\order</Filter>
     </ClCompile>
-    <ClCompile Include="order_command_test.cpp">
+    <ClCompile Include="test\order_command_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
-    <ClCompile Include="order_scheduler_test.cpp">
+    <ClCompile Include="test\order_scheduler_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
     <ClCompile Include="strategy\RisingTrendStrategy.cpp">
@@ -96,7 +102,7 @@
     <ClCompile Include="strategy\BreakoutStrategy.cpp">
       <Filter>소스 파일\strategy</Filter>
     </ClCompile>
-    <ClCompile Include="timing_strategy_test.cpp">
+    <ClCompile Include="test\timing_strategy_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,29 +116,38 @@
     <ClInclude Include="driver\NemoStockDriver.h">
       <Filter>헤더 파일\driver</Filter>
     </ClInclude>
-    <ClInclude Include="AutoTradingSystem.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="app\AutoTradingSystem.h">
+      <Filter>헤더 파일\app</Filter>
     </ClInclude>
-    <ClInclude Include="i_stock_broker_driver.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="driver\i_stock_broker_driver.h">
+      <Filter>헤더 파일\driver</Filter>
     </ClInclude>
-    <ClInclude Include="i_stock_driver_factory.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="driver\i_stock_driver_factory.h">
+      <Filter>헤더 파일\driver</Filter>
     </ClInclude>
-    <ClInclude Include="mock_stock_broker_driver.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="driver\mock_stock_broker_driver.h">
+      <Filter>헤더 파일\driver</Filter>
     </ClInclude>
-    <ClInclude Include="mock_stock_driver_factory.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="driver\mock_stock_driver_factory.h">
+      <Filter>헤더 파일\driver</Filter>
     </ClInclude>
-    <ClInclude Include="ILogger.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="app\ILogger.h">
+      <Filter>헤더 파일\app</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleLogger.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="app\ConsoleLogger.h">
+      <Filter>헤더 파일\app</Filter>
     </ClInclude>
-    <ClInclude Include="MockLogger.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="app\MockLogger.h">
+      <Filter>헤더 파일\app</Filter>
+    </ClInclude>
+    <ClInclude Include="app\ISleeper.h">
+      <Filter>헤더 파일\app</Filter>
+    </ClInclude>
+    <ClInclude Include="app\ThreadSleeper.h">
+      <Filter>헤더 파일\app</Filter>
+    </ClInclude>
+    <ClInclude Include="app\MockSleeper.h">
+      <Filter>헤더 파일\app</Filter>
     </ClInclude>
     <ClInclude Include="order\IOrderCommand.h">
       <Filter>헤더 파일\order</Filter>

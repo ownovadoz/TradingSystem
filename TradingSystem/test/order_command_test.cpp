@@ -1,8 +1,8 @@
 #include <gmock/gmock.h>
 
-#include "order/BuyOrderCommand.h"
-#include "order/SellOrderCommand.h"
-#include "mock_stock_broker_driver.h"
+#include "../order/BuyOrderCommand.h"
+#include "../order/SellOrderCommand.h"
+#include "../driver/mock_stock_broker_driver.h"
 
 using ::testing::NiceMock;
 

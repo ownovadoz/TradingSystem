@@ -2,9 +2,9 @@
 
 #include <gmock/gmock.h>
 
-#include "strategy/RisingTrendStrategy.h"
-#include "strategy/MovingAverageStrategy.h"
-#include "strategy/BreakoutStrategy.h"
+#include "../strategy/RisingTrendStrategy.h"
+#include "../strategy/MovingAverageStrategy.h"
+#include "../strategy/BreakoutStrategy.h"
 
 TEST(RisingTrendStrategyTest, shouldBuyWhenThreeConsecutiveRises) {
 	RisingTrendStrategy strategy;

@@ -1,5 +1,5 @@
 #include "OrderScheduler.h"
-#include "../ConsoleLogger.h"
+#include "../app/ConsoleLogger.h"
 
 OrderScheduler::OrderScheduler(std::unique_ptr<ILogger> logger)
 	: logger(logger ? std::move(logger) : std::make_unique<ConsoleLogger>()) {

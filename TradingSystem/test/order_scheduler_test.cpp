@@ -3,9 +3,9 @@
 
 #include <gmock/gmock.h>
 
-#include "order/OrderScheduler.h"
-#include "order/MockOrderCommand.h"
-#include "MockLogger.h"
+#include "../order/OrderScheduler.h"
+#include "../order/MockOrderCommand.h"
+#include "../app/MockLogger.h"
 
 using ::testing::_;
 using ::testing::InSequence;

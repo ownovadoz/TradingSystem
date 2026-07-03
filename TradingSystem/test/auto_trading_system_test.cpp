@@ -1,10 +1,11 @@
 ﻿#include <gmock/gmock.h>
 #include <memory>
 
-#include "AutoTradingSystem.h"
-#include "mock_stock_broker_driver.h"
-#include "mock_stock_driver_factory.h"
-#include "strategy/MockTimingStrategy.h"
+#include "../app/AutoTradingSystem.h"
+#include "../app/MockSleeper.h"
+#include "../driver/mock_stock_broker_driver.h"
+#include "../driver/mock_stock_driver_factory.h"
+#include "../strategy/MockTimingStrategy.h"
 
 using ::testing::NiceMock;
 using ::testing::Return;
@@ -35,11 +36,16 @@ class AutoTradingSystemTest : public ::testing::Test {
 protected:
 	AutoTradingSystem system;
 	NiceMock<MockStockDriver>* mockDriver = nullptr;
+	NiceMock<MockSleeper>* mockSleeper = nullptr;
 
 	void SetUp() override {
 		auto driver = std::make_unique<NiceMock<MockStockDriver>>();
 		mockDriver = driver.get();
 		system.selectStockBroker(std::move(driver));
+
+		auto sleeper = std::make_unique<NiceMock<MockSleeper>>();
+		mockSleeper = sleeper.get();
+		system.setSleeper(std::move(sleeper));
 	}
 
 	void login() {
@@ -103,6 +109,13 @@ TEST_F(AutoTradingSystemTest, getPrice) {
 	EXPECT_CALL(*mockDriver, getPrice("005930")).WillOnce(Return(12345));
 
 	EXPECT_EQ(12345, system.getPrice("005930"));
+}
+
+TEST_F(AutoTradingSystemTest, collectPriceTrendSleepsBetweenEachCheckExceptTheLast) {
+	EXPECT_CALL(*mockDriver, getPrice("005930")).WillRepeatedly(Return(100));
+	EXPECT_CALL(*mockSleeper, sleep(_)).Times(2);
+
+	system.collectPriceTrend("005930");
 }
 
 TEST_F(AutoTradingSystemTest, buyNiceTimingWithDefaultStrategyBuysOnRisingTrend) {
