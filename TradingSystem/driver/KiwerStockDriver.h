@@ -1,3 +1,4 @@
+#pragma once
 #include "IStockBrockerDriver.h"
 #include "../api/kiwer_api.cpp"
 
