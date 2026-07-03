@@ -26,7 +26,7 @@ void AutoTradingSystem::login(const std::string& id, const std::string& password
 	authorized = true;
 }
 
-void AutoTradingSystem::buy(const std::string& stock_code, int price, int count){
+void AutoTradingSystem::buy(const std::string& stock_code, int price, int count) {
 	if (!driver) {
 		throw BrokerNotSelectedException();
 	}
@@ -35,7 +35,7 @@ void AutoTradingSystem::buy(const std::string& stock_code, int price, int count)
 	if (driver) driver->buy(stock_code, price, count);
 }
 
-void AutoTradingSystem::sell(const std::string& stock_code, int price, int count){
+void AutoTradingSystem::sell(const std::string& stock_code, int price, int count) {
 	if (!driver) {
 		throw BrokerNotSelectedException();
 	}
@@ -45,11 +45,12 @@ void AutoTradingSystem::sell(const std::string& stock_code, int price, int count
 	if (driver) driver->sell(stock_code, price, count);
 }
 
-int AutoTradingSystem::getPrice(const std::string& stock_code){
+int AutoTradingSystem::getPrice(const std::string& stock_code) {
 	if (!driver) {
 		throw BrokerNotSelectedException();
 	}
 	if (driver) return driver->getPrice(stock_code);
+	return 0;
 }
 
 void AutoTradingSystem::buyNiceTiming(const std::string& stock_code, int total_money) {
