@@ -3,8 +3,6 @@
 #include <chrono>
 #include "auto_trading_system.h"
 
-//using std::vector;
-
 AutoTradingSystem::AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory)
 	: factory(std::move(factory)) {
 }
@@ -32,7 +30,7 @@ void AutoTradingSystem::buy(const std::string& stock_code, int price, int count)
 	}
 	if (!authorized)
 		throw NotAuthorizedException();
-	if (driver) driver->buy(stock_code, price, count);
+	driver->buy(stock_code, price, count);
 }
 
 void AutoTradingSystem::sell(const std::string& stock_code, int price, int count) {
@@ -42,15 +40,14 @@ void AutoTradingSystem::sell(const std::string& stock_code, int price, int count
 	if (!authorized)
 		throw NotAuthorizedException();
 
-	if (driver) driver->sell(stock_code, price, count);
+	driver->sell(stock_code, price, count);
 }
 
 int AutoTradingSystem::getPrice(const std::string& stock_code) {
 	if (!driver) {
 		throw BrokerNotSelectedException();
 	}
-	if (driver) return driver->getPrice(stock_code);
-	return 0;
+	return driver->getPrice(stock_code);
 }
 
 void AutoTradingSystem::buyNiceTiming(const std::string& stock_code, int total_money) {
@@ -67,9 +64,9 @@ void AutoTradingSystem::buyNiceTiming(const std::string& stock_code, int total_m
 
 	if (do_buy) {
 		int current_price = prices.back();
-		int shareCount = calculateMaxShares(total_money, current_price);
-		if (shareCount > 0) {
-			driver->buy(stock_code, current_price, shareCount);
+		int share_count = calculateMaxShares(total_money, current_price);
+		if (share_count > 0) {
+			driver->buy(stock_code, current_price, share_count);
 		}
 	}
 }
