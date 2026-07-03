@@ -33,15 +33,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="kiwer_api.cpp">
-      <Filter>소스 파일\api</Filter>
-    </ClCompile>
-    <ClCompile Include="nemo_api.cpp">
-      <Filter>소스 파일\api</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <ClCompile Include="api\nemo_api.cpp">
       <Filter>소스 파일\api</Filter>
@@ -57,6 +52,8 @@
     <ClCompile Include="kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
+=======
+>>>>>>> 4a4000e (First Implement Auto Trading System App Unit Test Framework)
     <ClCompile Include="auto_trading_system.cpp">
       <Filter>소스 파일\app</Filter>
     </ClCompile>
@@ -64,6 +61,7 @@
 >>>>>>> e83dc90 (AutoTrading Application 초기 구조 구현)
       <Filter>소스 파일\test</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="test\kiwer_test.cpp">
       <Filter>소스 파일\test</Filter>
     </ClCompile>
@@ -72,6 +70,13 @@
     </ClCompile>
     <ClCompile Include="driver\KiwerStockDriver.h">
       <Filter>소스 파일\driver</Filter>
+=======
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
+      <Filter>소스 파일</Filter>
+>>>>>>> 4a4000e (First Implement Auto Trading System App Unit Test Framework)
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +94,12 @@
 </Project>
 =======
     <ClInclude Include="auto_trading_system.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mock_stock_broker_driver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="i_stock_broker_driver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

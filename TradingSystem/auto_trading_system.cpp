@@ -1,30 +1,44 @@
 #include "auto_trading_system.h"
 
+AutoTradingSystem::AutoTradingSystem(std::unique_ptr<IStockDriverFactory> factory)
+	: factory(std::move(factory)) {
+}
+
 void AutoTradingSystem::selectStockBroker(std::unique_ptr<IStockBrokerDriver> driver) {
-	driver = std::move(driver);
+	this->driver = std::move(driver);
+}
+
+void AutoTradingSystem::selectStockBroker(BrokerType type) {
+	selectStockBroker(factory->create(type));
 }
 
 void AutoTradingSystem::login(const std::string& id, const std::string& password) {
-	if (driver) driver->login(id, pass);
+	if (!driver) {
+		throw BrokerNotSelectedException();
+	}
+
+	driver->login(id, password);
+	authorized = true;
 }
 
-void AutoTradingSystem::buy(const std::string& stockCode, int price, int count) {
+void AutoTradingSystem::buy(const std::string& stock_code, int price, int count) {
 	if (driver) driver->buy(stockCode, price, count);
 }
 
-void AutoTradingSystem::sell(const std::string& stockCode, int price, int count) {
+void AutoTradingSystem::sell(const std::string& stock_code, int price, int count) {
 	if (driver) m_broker->sell(stockCode, price, count);
 }
 
-int AutoTradingSystem::getPrice(const std::string& stockCode) {
 	if (driver) return driver->getPrice(stockCode);
 	return 0;
 }
 
-void AutoTradingSystem::buyNiceTiming(const std::string& stockCode, int totalMoney) {
+void AutoTradingSystem::buyNiceTiming(const std::string& stock_code, int total_money) {
 
 }
 
-void AutoTradingSystem::sellNiceTiming(const std::string& stockCode, int count) {
+void AutoTradingSystem::sellNiceTiming(const std::string& stock_code, int count) {
 
+bool AutoTradingSystem::isAuthorized() {
+	return authorized;
 }
